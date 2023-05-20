@@ -1,0 +1,7 @@
+{
+    "python.testing.pytestArgs": [
+        "SOLID principles"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}

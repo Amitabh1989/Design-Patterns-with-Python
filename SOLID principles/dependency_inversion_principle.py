@@ -86,7 +86,7 @@ class SaveData(DataHandler):
         self.db_obj.save()
         return True
 
-class Person(SaveData):
+class Person:
     """
     Class representing a person.
 
@@ -96,7 +96,7 @@ class Person(SaveData):
         salary (float): The salary of the person.
     """
 
-    def __init__(self, name: str, age: int, salary: float) -> None:
+    def __init__(self, name: str, age: int, salary: float, data_handler: DataHandler) -> None:
         """
         Initialize a Person object.
 
@@ -105,10 +105,10 @@ class Person(SaveData):
             age (int): The age of the person.
             salary (float): The salary of the person.
         """
-        super().__init__()
         self.name = name
         self.age = age
         self.salary = salary
+        self.data_handler = data_handler
     
     def __str__(self) -> str:
         """
@@ -129,4 +129,4 @@ class Person(SaveData):
         Returns:
             bool: True if the data is saved successfully, False otherwise.
         """
-        return self.save_data(data)
+        return self.data_handler.save_data(data)
