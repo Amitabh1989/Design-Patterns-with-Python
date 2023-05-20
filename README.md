@@ -1,4 +1,4 @@
-# Design-Patterns-with-Python
+# Design-Patterns-with-Python with Amitabh
 
 Welcome to this series of Design Patterns using Python. Its a live series where in I will be covering SOLID design principle + 20 Software Design Patterns : All using Python !!
 
