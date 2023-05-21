@@ -22,7 +22,7 @@ import random
 
 
 # ==============================================
-# ALLOCATOR IMPLEMENTATION
+# 1. ALLOCATOR IMPLEMENTATION
 # ==============================================
 
 Self = TypeVar("Self", bound="DataBase")
@@ -66,9 +66,12 @@ d2 = DataBase()
 print(d1 == d2)
 print("---")
 
+# You will see that the INIT is run for n nujmber of times, based on number of
+# objects created. Verify this with the run. Output at end of the program
+# Let's solve this with decorators and the using Metaclass.
 
 # ==============================================
-# DECORATOR IMPLEMENTATION
+# 2. DECORATOR IMPLEMENTATION
 # ==============================================
 
 Self = TypeVar("Self", bound="DataBase2")
@@ -115,7 +118,7 @@ print("---")
 
 
 # ==============================================
-# METACLASS IMPLEMENTATION
+# 3. METACLASS IMPLEMENTATION (uses __call__)
 # ==============================================
 
 # Singleton Metaclass
@@ -153,3 +156,53 @@ d5 = DataBase3()
 d6 = DataBase3()
 print (d5 == d6)
 print("---")
+
+OUTPUT = r"""
+>>> import singleton_1
+Hello from the Database, id 38
+Hello from the Database, id 55
+True
+---
+Hello from the Database, id 7
+True
+---
+Hello from the Database, id 56
+True
+---
+"""
+
+
+"""
+READ : DIFFERENCE BETWEEN __new__ and __call__
+
+The `__new__` and `__call__` methods in Python have different purposes and
+behaviors:
+
+1. `__new__` method: ==> Come to play when class in INHERITED
+    1. The `__new__` method is a special method that is responsible for creating
+       and returning a new instance of a class.
+    2. It is a static method that is called before the `__init__` method.
+    3, Its primary purpose is to allocate and initialize the memory required for
+       a new object.
+    4. The `__new__` method takes the class as its first argument (`cls`) and
+       returns a newly created instance of that class.
+    5. You can override the `__new__` method to customize the object creation
+       process, such as returning an existing instance instead of creating a
+       new one (e.g., for implementing a singleton pattern).
+
+2. `__call__` method: ==> Comes to play when class is used as METACLASS
+    1. The `__call__` method allows an object of a class to be called as a
+       function.
+    2. It provides the functionality of making an instance of a class callable
+       like a regular function.
+    3. When an instance is called as a function, the `__call__` method of the
+       class is invoked.
+    4. The `__call__` method can take arguments like a regular function, and you
+       can define its behavior based on those arguments.
+    5. It can be useful for creating callable objects or implementing callable
+       classes that can be invoked directly.
+
+In summary, `__new__` is responsible for object creation, while `__call__`
+allows objects to be called as functions. They serve different purposes in 
+the object-oriented programming model of Python.
+"""
