@@ -3,5 +3,11 @@
         "SOLID principles"
     ],
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+    "python.analysis.extraPaths": [
+        "./05_Adapter_Design_Pattern",
+        "./07_Composite_Design_Pattern",
+        "./04_Singleton_Design_Pattern",
+        "./04_Singleton_Design_Pattern"
+    ]
 }
