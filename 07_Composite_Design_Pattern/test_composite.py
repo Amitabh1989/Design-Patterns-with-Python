@@ -1,3 +1,7 @@
+"""
+PyTest module to test Composite file
+"""
+
 import pytest
 import composite
 from composite import *
