@@ -5,8 +5,6 @@ PyTest module to test Composite file
 import pytest
 import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-# import composite
-# from composite import *
 import _07_Composite_Design_Pattern.composite
 from _07_Composite_Design_Pattern.composite import *
 
