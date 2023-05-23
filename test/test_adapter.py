@@ -34,6 +34,8 @@ def test_json_to_csv_converter(mocker):
     output = StringIO()
     mocker.patch("sys.stdout", new=output)
 
+    json_file_converter.convert()
+
     assert json_file.read_json.called
     assert json_file.write_csv.called
     assert output.getvalue() == "Conversion complete!\n"
