@@ -66,7 +66,7 @@ class Pizza:
         self.dough = dough
         print(f'Preparing the {self.dough} of your {self}...')
         time.sleep(STEP_DELAY)
-        print(f'Done with the {self.dough.name} dough')
+        print(f'Done with the {self.dough} dough')
 
 
 class MargaritaBuilder:
