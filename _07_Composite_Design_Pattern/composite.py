@@ -64,7 +64,7 @@ class Employee:
         self.designation = "Manager"
 
     # pylint: disable=protected-access
-    def _print(self, emps: str, depth: int) -> None:
+    def _print(self, emps: list, depth: int) -> None:
         """
         Helper method to recursively print the employee hierarchy.
 
