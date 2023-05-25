@@ -13,6 +13,34 @@ based on certain conditions.
 Where as the NewJoinee class could add any employee without any checks.
 NewJoinee class also, did not support list of employees to be registered.
 
+ADDITIONAL NOTE :
+This is an example of PROTECTION PROXY.
+
+Notice how using a proxy class object, we could enforce functionality
+to check for experience and allow list of employees to be processed.
+
+The Protection Proxy design pattern is a structural design pattern that
+controls access to an object by providing a surrogate or proxy object that
+acts as an intermediary between the client and the real object. The proxy
+object controls the access to the real object and adds additional
+functionality or restrictions based on certain conditions.
+
+The main purpose of the Protection Proxy pattern is to control access to the
+real object, especially when there are different levels of access rights or
+security concerns involved. It allows the proxy object to check whether the
+client has the necessary permissions or privileges to perform certain
+operations on the real object.
+
+By using the Protection Proxy pattern, you can enforce security checks,
+authentication, and authorization before allowing clients to access the real
+object. This pattern provides an additional layer of protection and control
+over the behavior and access to the underlying object.
+
+In summary, the Protection Proxy pattern provides a proxy object that controls
+access to a real object and adds security checks or restrictions to ensure
+that clients have the necessary permissions or meet specific criteria before
+accessing the real object.
+
 Let's see the magic !
 
 """
