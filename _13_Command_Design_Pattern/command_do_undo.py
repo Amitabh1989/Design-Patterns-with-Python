@@ -37,6 +37,13 @@ class BankAccount:
     """
 
     OVERDRAFTLIMIT = -500
+    ACCOUNTHOLDERINFO = {}
+
+    def __new__(cls, *args, **kwargs):
+        name = args[0]
+        if name not in cls.ACCOUNTHOLDERINFO:
+            cls.ACCOUNTHOLDERINFO[name] = super(BankAccount, cls).__new__(cls)
+        return cls.ACCOUNTHOLDERINFO[name]
 
     def __init__(self, name, amount) -> None:
         """
@@ -77,6 +84,20 @@ class BankAccount:
         String representation of the object
         """
         return f'AC Name {self.name}, balance : {self.amount}'
+
+
+class SecureAccount(BankAccount):
+    """
+    Random concept check to secure account access. Kindly ignore usage!
+    """
+    def __new__(cls, *args, **kwargs):
+        name = args[0]
+        if name not in BankAccount.ACCOUNTHOLDERINFO:
+            raise ValueError(f'{name} is not a registered bank account holder')
+        return super(SecureAccount, cls).__new__(cls, *args, **kwargs)
+    
+    def __init__(self, name, amount) -> None:
+        super().__init__(name, amount)
 
 
 class Command(ABC):
@@ -176,24 +197,29 @@ class WithdrawTransferCommand(CompositeBankAccountCommand):
     def invoke(self):
         self.success = all([i.invoke() for i in self])
 
-# if __name__ == '__main__':
-#     ba1 = BankAccount("Amitabh", 0)
-#     ba2 = BankAccount("Shweta", 0)
+if __name__ == '__main__':
+    ba1 = BankAccount("Amitabh", 0)
+    ba2 = BankAccount("Shweta", 0)
 
-#     print(f'BA1 : {ba1}\nBA2 : {ba2}')
+    print(f'BA1 : {ba1}\nBA2 : {ba2}')
 
-#     bac1 = BankAccountCommand(ba1, BankAccountCommand.Action.DEPOSIT, 500)
-#     bac2 = BankAccountCommand(ba2, BankAccountCommand.Action.DEPOSIT, 1000)
+    ba1 = SecureAccount("Amitabh", 0)
+    ba2 = SecureAccount("Shweta", 0)
 
-#     composite = CompositeBankAccountCommand([bac1, bac2])
-#     composite.invoke()
+    print(f'BA1 : {ba1}\nBA2 : {ba2}')
 
-#     print(f'BA1 : {ba1}\nBA2 : {ba2}')
+    bac1 = BankAccountCommand(ba1, BankAccountCommand.Action.DEPOSIT, 500)
+    bac2 = BankAccountCommand(ba2, BankAccountCommand.Action.DEPOSIT, 1000)
 
-#     transfer = WithdrawTransferCommand(ba1, ba2, 1000)
-#     transfer.invoke()
+    composite = CompositeBankAccountCommand([bac1, bac2])
+    composite.invoke()
 
-#     print(f'BA1 : {ba1}\nBA2 : {ba2}')
+    print(f'BA1 : {ba1}\nBA2 : {ba2}')
+
+    transfer = WithdrawTransferCommand(ba1, ba2, 1000)
+    transfer.invoke()
+
+    print(f'BA1 : {ba1}\nBA2 : {ba2}')
 
 
 class TestCommand(unittest.TestCase):
@@ -225,5 +251,20 @@ class TestCommand(unittest.TestCase):
         assert self.ba1.amount == 0
         assert self.ba2.amount == 0
 
-if __name__ == '__main__':
-    unittest.main()
+# if __name__ == '__main__':
+#     unittest.main()
+
+OUTPUT = r"""
+(dp-venv) PS C:\GitHub\Design-Patterns-with-Python\_13_Command_Design_Pattern> python .\command_do_undo.py
+BA1 : AC Name Amitabh, balance : 0
+BA2 : AC Name Shweta, balance : 0
+BA1 : AC Name Amitabh, balance : 0
+BA2 : AC Name Shweta, balance : 0
+Composite : [<__main__.BankAccountCommand object at 0x000001BDE93FA100>,
+ <__main__.BankAccountCommand object at 0x000001BDE93FA160>]
+BA1 : AC Name Amitabh, balance : 500
+BA2 : AC Name Shweta, balance : 1000
+BA1 : AC Name Amitabh, balance : -500
+BA2 : AC Name Shweta, balance : 2000
+(dp-venv) PS C:\GitHub\Design-Patterns-with-Python\_13_Command_Design_Pattern> 
+"""
