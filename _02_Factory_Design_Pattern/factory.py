@@ -1,7 +1,7 @@
 """
 Factory Design Pattern
 
-The code belo demonstrates the Factory Method design pattern. It follows the
+The code below demonstrates the Factory Method design pattern. It follows the
 basic structure of the Factory Method pattern, where we have a factory class
 (Factory) responsible for creating objects of different types based on a given
 parameter (num_wheels in this case).
@@ -18,6 +18,18 @@ Overall, this code demonstrates the Factory Method pattern by encapsulating
 the object creation logic in the Factory class, allowing the client code to
 create different types of vehicles without directly knowing the specific
 vehicle class to instantiate.
+
+Think manually : We have a Car manufacturing factory.
+
+And the company has 4 models of cars. Its pretty obvious that it may not
+have 4 factories for 4 cars. You would want to optimize your resource usage
+and build all cars (well, are you planning of FLYING CARS too? ;-) )!
+
+So factory provides a uniform interface and internally invokes required
+classes to cater to the request. User just needs to order the car and the
+factory will return the ready Car.
+
+Enjoy your drive!
 
 """
 
