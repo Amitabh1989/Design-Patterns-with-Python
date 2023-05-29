@@ -2,7 +2,19 @@
 Builder Design Pattern
 
 NOTE : We could have used Abstract design pattern as well but this is a
-demonstration of "Builder Design Patter"
+demonstration of "Builder Design Pattern"
+
+Approach here is pretty simplpe and yet magnificent.
+Think manually, about all steps involved in a Pizza order till deliver.
+1. Someone presents menu for Pizza orders available.
+2. User selects the Pizza and order preperation process kicks in.
+3. The Pizza base is selected
+4. Based on type of Pizza, sauce, toppings and baking is done.
+5. While #4 is in progress, the progress updated in shown in the ticker.
+6. Once Pizza is ready, its served!
+
+And in below implenmentation, you will see that exact same process has been
+followed. Each process is a class (well, almost)
 
 A step-by-step approach to build the final product !
 
